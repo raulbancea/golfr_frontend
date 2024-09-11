@@ -20,7 +20,7 @@ const Layout = ({ children }) => {
         </span>
         <span className="h-8 items-center text-xl ml-auto">
           <Link href={`/golfers/${id}`}>
-            <a>{username}</a>
+            {username}
           </Link>
           <span className="text-sm">
             {' ('}
