@@ -7,7 +7,7 @@ const Home = () => {
   const { scores, error } = useScores()
 
   return (
-    <Layout home>
+    <Layout>
       <>
         {error ? (
           error
