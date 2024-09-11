@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react'
 import { getUsername, getUserId } from '../lib/userAuth'
 
 const Layout = ({ children }) => {
-  const [username, setUsername] = useState('')
-  const [id, setUserId] = useState('')
+  const [ username, setUsername ] = useState('')
+  const [ id, setUserId ] = useState('')
 
   useEffect(() => {
     setUsername(getUsername())
