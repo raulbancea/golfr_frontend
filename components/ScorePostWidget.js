@@ -5,25 +5,24 @@ import useScorePost from '../lib/useScorePost'
 const TODAY = new Date().toISOString().slice(0, 10)
 
 const ScorePostWidget = () => {
-  const [open, setOpen] = useState(false)
+  const [ open, setOpen ] = useState(false)
   const onClick = useCallback(
     () => setOpen(!open),
-    [open, setOpen]
+    [ open, setOpen ]
   )
 
-  const [totalScore, setTotalScore] = useState(80)
-  const [playedAt, setPlayedAt] = useState(TODAY)
-  const [numberOfHoles, setNumberOfHoles] = useState(18) // NEW: Number of Holes state
-
+  const [ totalScore, setTotalScore ] = useState(80)
+  const [ playedAt, setPlayedAt ] = useState(TODAY)
+  const [ numberOfHoles, setNumberOfHoles ] = useState(18)
   const { postScore } = useScorePost()
 
   const onSubmit = useCallback(
     e => {
       e.preventDefault()
-      postScore(totalScore, playedAt, numberOfHoles) // Pass number of holes to postScore
+      postScore(totalScore, playedAt, numberOfHoles)
       setOpen(false)
     },
-    [totalScore, playedAt, numberOfHoles, postScore] // NEW: Add numberOfHoles to dependencies
+    [ totalScore, playedAt, numberOfHoles, postScore ]
   )
 
   return (
