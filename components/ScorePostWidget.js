@@ -16,14 +16,7 @@ const ScorePostWidget = () => {
   const [ numberOfHoles, setNumberOfHoles ] = useState(18)
   const { postScore } = useScorePost()
 
-  const onSubmit = useCallback(
-    e => {
-      e.preventDefault()
-      postScore(totalScore, playedAt, numberOfHoles)
-      setOpen(false)
-    },
-    [ totalScore, playedAt, numberOfHoles, postScore ]
-  )
+  const scoreData = { totalScore, playedAt, numberOfHoles }
 
   return (
     <div>
@@ -35,7 +28,7 @@ const ScorePostWidget = () => {
         Want to post a score?
       </div>
       <Collapse isOpened={open}>
-        <form onSubmit={onSubmit}>
+        <form onSubmit={e => onSubmit(e, scoreData, postScore, setOpen)}>
           <div className="border border-dashed border-gray-300 p-3 my-1 lg:w-1/3 md:w-1/2">
             <div>
               Total Score
@@ -79,6 +72,13 @@ const ScorePostWidget = () => {
       </Collapse>
     </div>
   )
+}
+
+const onSubmit = (e, scoreData, postScore, setOpen) => {
+  e.preventDefault()
+  const { totalScore, playedAt, numberOfHoles } = scoreData
+  postScore(totalScore, playedAt, numberOfHoles)
+  setOpen(false)
 }
 
 export default ScorePostWidget
