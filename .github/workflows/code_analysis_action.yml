@@ -11,3 +11,6 @@ jobs:
         run: yarn install
       - name: Run eslint
         uses: tj-actions/eslint-changed-files@v8.4
+      - name: Lint Action
+        uses: wearerequired/lint-action@v2.3.0
+
