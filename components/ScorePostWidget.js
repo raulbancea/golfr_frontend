@@ -4,16 +4,23 @@ import useScorePost from '../lib/useScorePost'
 
 const TODAY = new Date().toISOString().slice(0, 10)
 
+const onSubmit = (e, scoreData, postScore, setOpen) => {
+  e.preventDefault()
+  const { totalScore, playedAt, numberOfHoles } = scoreData
+  postScore(totalScore, playedAt, numberOfHoles)
+  setOpen(false)
+}
+
 const ScorePostWidget = () => {
-  const [ open, setOpen ] = useState(false)
+  const [open, setOpen] = useState(false)
   const onClick = useCallback(
     () => setOpen(!open),
-    [ open, setOpen ]
+    [open, setOpen]
   )
 
-  const [ totalScore, setTotalScore ] = useState(80)
-  const [ playedAt, setPlayedAt ] = useState(TODAY)
-  const [ numberOfHoles, setNumberOfHoles ] = useState(18)
+  const [totalScore, setTotalScore] = useState(80)
+  const [playedAt, setPlayedAt] = useState(TODAY)
+  const [numberOfHoles, setNumberOfHoles] = useState(18)
   const { postScore } = useScorePost()
 
   const scoreData = { totalScore, playedAt, numberOfHoles }
@@ -37,7 +44,8 @@ const ScorePostWidget = () => {
                 name="total_score"
                 value={totalScore}
                 onChange={e => setTotalScore(e.target.value)}
-                min="20" max="140"
+                min="20"
+                max="140"
                 className="form-input h-8 w-20 ml-3 my-2"
               />
             </div>
@@ -59,7 +67,8 @@ const ScorePostWidget = () => {
                 name="number_of_holes"
                 value={numberOfHoles}
                 onChange={e => setNumberOfHoles(e.target.value)}
-                min="9" max="18"
+                min="9"
+                max="18"
                 className="form-input h-8 w-20 ml-3 my-2"
               />
             </div>
@@ -72,13 +81,6 @@ const ScorePostWidget = () => {
       </Collapse>
     </div>
   )
-}
-
-const onSubmit = (e, scoreData, postScore, setOpen) => {
-  e.preventDefault()
-  const { totalScore, playedAt, numberOfHoles } = scoreData
-  postScore(totalScore, playedAt, numberOfHoles)
-  setOpen(false)
 }
 
 export default ScorePostWidget
