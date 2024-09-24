@@ -22,7 +22,6 @@ const ScorePostWidget = () => {
   const [ playedAt, setPlayedAt ] = useState(TODAY)
   const [ numberOfHoles, setNumberOfHoles ] = useState(18)
   const { postScore } = useScorePost()
-
   const scoreData = { totalScore, playedAt, numberOfHoles }
 
   return (
@@ -70,7 +69,6 @@ const ScorePostWidget = () => {
                 className="form-input h-8 w-20 ml-3 my-2"
               />
             </div>
-
             <button className="w-40 p-1 my-2 bg-gray-200 rounded-lg">
               Post
             </button>
@@ -80,6 +78,5 @@ const ScorePostWidget = () => {
     </div>
   )
 }
-
 
 export default ScorePostWidget
